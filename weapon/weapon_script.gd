@@ -178,9 +178,9 @@ func _apply_camera_recoil():
 	camera_tween.parallel().tween_property(camera_joint,"rotation",recoil,fire_rate_seconds)
 	camera_tween.parallel().tween_property(camera_joint,"position",pos,fire_rate_seconds)
 	
-	camera_tween.tween_interval(fire_rate_seconds * recoil_recovery_speed)
-	camera_tween.parallel().tween_property(camera_joint,"position",Vector3(),(fire_rate_seconds * 2) * recoil_recovery_speed)
-	camera_tween.parallel().tween_property(camera_joint,"rotation",Vector3(),(fire_rate_seconds * 2) * recoil_recovery_speed)
+	camera_tween.tween_interval(recoil_recovery_speed)
+	camera_tween.parallel().tween_property(camera_joint,"position",Vector3(),recoil_recovery_speed)
+	camera_tween.parallel().tween_property(camera_joint,"rotation",Vector3(),recoil_recovery_speed)
 
 func _animation_controller(is_reload: bool = false,empty_magazine: bool = false):
 	var rand_anim := String()
