@@ -9,3 +9,15 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 data_*/
+*.cache
+*.ctex
+*.scn
+*.cfg
+*.md5
+.godot/.gdignore
+.godot/editor/filesystem_cache7
+.godot/editor/filesystem_update4
+.godot/uid_cache.bin
+AK47/ak47.glb.import
+AK47/ak47_.glb.import
+icon.png.import

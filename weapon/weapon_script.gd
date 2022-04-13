@@ -68,8 +68,7 @@ func _ready():
 	randomize()
 	fire_rate_seconds = 60.0 / firerate
 	timer.one_shot = true
-	timer.timeout.connect(_counter)
-	$AnimationPlayer.animation_finished.connect(_animation_finished)
+	
 	add_child(timer)
 	camera_tween = create_tween()
 	if animation_player:animation_player = get_node_or_null(animation_player)
@@ -78,6 +77,9 @@ func _ready():
 	if muzzle_flash_light:muzzle_flash_light = get_node_or_null(muzzle_flash_light)
 	if raycast:raycast = get_node_or_null(raycast)
 	if shell_drop_position:shell_drop_position = get_node_or_null(shell_drop_position)
+	
+	animation_player.animation_finished.connect(_animation_finished)
+	timer.timeout.connect(_counter)
 
 func _process(_delta):
 	if timer.is_stopped() and not is_reloading:
@@ -137,10 +139,10 @@ func _reload():
 			else:
 				_animation_controller(true)
 			
-			if ammo_size < bullet_shoted:
+			if ammo_size <= bullet_shoted:
 				current_magazine_size += ammo_size
 				ammo_size = 0
-			elif ammo_size > bullet_shoted:
+			elif ammo_size >= bullet_shoted:
 				current_magazine_size = magazine_size + round_in_chamber
 				ammo_size -= bullet_shoted
 			bullet_shoted = 0
